@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
-import CreateCatForm from '../components/CreateCatForm';
-import CatsList from '../components/CatsList'; // Assuming you have this component
+import CreateCatForm from '@/components/CreateCatForm.js';  
+import CatsList from '../components/CatsList.js'; // Assuming you have this component
+import OwnersList from '@/components/OwnersList.js';
+import CreateOwnerForm from '@/components/CreateOwnerForm.js';
 
-export default function Home() {
+
+export default function HomePage() {
   const [cats, setCats] = useState([]);
+  const [owners, setOwners] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
@@ -13,23 +17,38 @@ export default function Home() {
         setCats(data.data);
       }
     };
+    const fetchOwners = async () => {
+      const response = await fetch('/api/owners');
+      const data = await response.json();
+      if (data.success) {
+        setOwners(data.data);
+      }
+    }
 
     fetchCats();
+    fetchOwners();
   }, []);
+  
 
   // Function to add a new cat to the list
   const addNewCat = (newCat) => {
- fetchCats();
+    fetchCats();
     setCats((prevCats) => [newCat, ...prevCats]);
   };
+  const addNewOwner = (newOwner) => {
+        ftechOwners();
+       setOwners((prevOwners) => [newOwner, ...prevOwners]);
+     };
+     
   
 
   return (
     <div>
-      <h1>Create New Cat Profile</h1>
       <CreateCatForm onCatCreated={addNewCat} />
-      <h2>Existing Cats</h2>
-      <CatsList cats={cats} />
+      <CatsList />
+      <CreateOwnerForm onOwnerCreated={addNewOwner} />  
+      <OwnersList />
     </div>
   );
 }
+

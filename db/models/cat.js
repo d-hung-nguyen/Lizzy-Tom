@@ -8,6 +8,7 @@ const catSchema = new mongoose.Schema({
   dateOfBirth: Date,
   identityNumber: String,
   transponderCode: String,
+  Status: String,
 });
 
 const Cat = mongoose.models.Cat || mongoose.model('Cat', catSchema);

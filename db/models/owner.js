@@ -1,9 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
-const ownerSchema = new Schema({
-  name: String,
-  address: String,
-  zipCode: String,
+import mongoose from 'mongoose';
+
+const ownerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
   email: String,
+  address: String,
+  city: String,
   telephone: String,
 });
 

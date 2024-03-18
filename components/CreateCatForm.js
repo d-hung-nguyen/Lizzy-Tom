@@ -1,10 +1,10 @@
 // components/CreateCatForm.js
 import { useState } from 'react';
 
-function CreateCatForm() {
+function CreateCatForm(onCatCreated, cat, onSuscess) {
   const [catData, setCatData] = useState({
     name: '',
-    breed: '',
+    email: '',
     gender: '',
     color: '',
     dateOfBirth: '',
@@ -45,6 +45,8 @@ function CreateCatForm() {
   };
 
   return (
+    <>
+    <h2>Create Cat Profile</h2>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -96,8 +98,16 @@ function CreateCatForm() {
         value={catData.transponderCode}
         onChange={handleChange}
       />
+      <input
+        type="tedt"
+        name="status"
+        placeholder="Status"
+        value={catData.status}
+        onChange={handleChange}
+      />
       <button type="submit">Create Cat Profile</button>
     </form>
+    </>
   );
 }
 
